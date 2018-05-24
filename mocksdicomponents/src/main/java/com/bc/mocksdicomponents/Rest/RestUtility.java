@@ -15,9 +15,12 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RestUtility {
 
+	ThreadLocalRandom random;
+	
 	String url = "http://localhost:8080/events";
 	
 	HttpClient httpClient = HttpClientBuilder.create().build();
@@ -35,21 +38,25 @@ public class RestUtility {
 		httpPost.setHeader("Content-Type","application/json");
 		
 		events.setComponent("treatment");
+		events.setEventId(random.nextLong(11111111, 99999999));
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
 		
 		events.setComponent("Movement");
+		events.setEventId(random.nextLong(11111111, 99999999));
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
 		
 		events.setComponent("Aggregate");
+		events.setEventId(random.nextLong(11111111, 99999999));
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
 		
 		events.setComponent("Settlement");
+		events.setEventId(random.nextLong(11111111, 99999999));
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);

@@ -33,6 +33,8 @@ public class SimpleFileReader {
 			events.setCrdNumber(tokens[2]);
 			events.setTxnType(tokens[3]);
 			events.setTxnAmount(tokens[4]);
+			events.setWindowId(tokens[5]);
+			events.setBusiness(tokens[6]);
 			
 			restUtility.sendEvents(events);
 			

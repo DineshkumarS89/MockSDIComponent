@@ -11,6 +11,32 @@ public class EventsBO {
 	private String txnType;
 	private String txnAmount;
 	private String component;
+	private String windowId;
+	private String business;
+	private long eventId;
+	
+	
+	
+	
+	
+	public String getWindowId() {
+		return windowId;
+	}
+	public void setWindowId(String windowId) {
+		this.windowId = windowId;
+	}
+	public String getBusiness() {
+		return business;
+	}
+	public void setBusiness(String business) {
+		this.business = business;
+	}
+	public long getEventId() {
+		return eventId;
+	}
+	public void setEventId(long eventId) {
+		this.eventId = eventId;
+	}
 	public String getMerchantName() {
 		return MerchantName;
 	}
