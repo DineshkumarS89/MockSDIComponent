@@ -37,26 +37,45 @@ public class RestUtility {
 		
 		httpPost.setHeader("Content-Type","application/json");
 		
+		long eventID = random.nextLong(11111111, 99999999);
+		
+		Double amount = Double.parseDouble(events.getTxnAmount());
+		
+		Double pricedAmount = 0.0;
+		
+		if(amount < 100)
+			pricedAmount = amount - (amount * 0.02);
+		else
+			pricedAmount = amount - (amount * 0.05);
+		
+		events.setComponent("SDI");
+		events.setEventId(eventID);
+		request = new StringEntity(gson.toJson(events));
+		httpPost.setEntity(request);
+		httpResponse = httpClient.execute(httpPost);
+		
+		
 		events.setComponent("treatment");
-		events.setEventId(random.nextLong(11111111, 99999999));
+		events.setEventId(eventID);
+		events.setTxnAmount(pricedAmount.toString());
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
 		
 		events.setComponent("Movement");
-		events.setEventId(random.nextLong(11111111, 99999999));
+		events.setEventId(eventID);
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
 		
 		events.setComponent("Aggregate");
-		events.setEventId(random.nextLong(11111111, 99999999));
+		events.setEventId(eventID);
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
 		
 		events.setComponent("Settlement");
-		events.setEventId(random.nextLong(11111111, 99999999));
+		events.setEventId(eventID);
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
