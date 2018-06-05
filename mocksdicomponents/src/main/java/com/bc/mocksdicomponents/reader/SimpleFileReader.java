@@ -12,13 +12,17 @@ public class SimpleFileReader {
 
 	private FileReader fileReader;
 	private BufferedReader br;
-	EventsBO events = new EventsBO();
-	RestUtility restUtility = new RestUtility();
+	EventsBO events = null;
+	RestUtility restUtility = null;
 	
 	
 	public void readFile(String inputpath) throws IOException {
 		
 		fileReader = new FileReader(inputpath);
+		
+		events = new EventsBO();
+		
+		restUtility = new RestUtility();
 		
 		br = new BufferedReader(fileReader);
 		
@@ -37,6 +41,8 @@ public class SimpleFileReader {
 			events.setBusiness(tokens[6]);
 			
 			restUtility.sendEvents(events);
+			
+			line = br.readLine();
 			
 		}
 		

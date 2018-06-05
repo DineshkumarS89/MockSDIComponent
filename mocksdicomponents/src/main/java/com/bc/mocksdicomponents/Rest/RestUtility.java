@@ -19,7 +19,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RestUtility {
 
-	ThreadLocalRandom random;
+	
 	
 	String url = "http://localhost:8080/events";
 	
@@ -35,9 +35,11 @@ public class RestUtility {
 	
 	public void sendEvents(EventsBO events) throws IOException {
 		
+		
+		
 		httpPost.setHeader("Content-Type","application/json");
 		
-		long eventID = random.nextLong(11111111, 99999999);
+		long eventID = ThreadLocalRandom.current().nextLong(11111111, 99999999);
 		
 		Double amount = Double.parseDouble(events.getTxnAmount());
 		
@@ -50,6 +52,9 @@ public class RestUtility {
 		
 		events.setComponent("SDI");
 		events.setEventId(eventID);
+		
+//		System.out.println(gson.toJson(events));
+		
 		request = new StringEntity(gson.toJson(events));
 		httpPost.setEntity(request);
 		httpResponse = httpClient.execute(httpPost);
